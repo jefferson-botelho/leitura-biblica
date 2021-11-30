@@ -1,6 +1,7 @@
 package com.leitura.biblia.impl;
 
 import com.leitura.biblia.model.RegistroLeitura;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Data
 @NoArgsConstructor
 @Document("livros")
 public class GerarLivrosDTO {

@@ -23,4 +23,21 @@ public class LivrosService {
         GerarLivrosDTO gerarLivrosDTO = new GerarLivrosDTO();
         livrosRepository.insert(gerarLivrosDTO.gerarLivrosBiblia());
     }
+
+    public GerarLivrosDTO obterLivrosPorId(String id){
+        return livrosRepository.findById(id).orElseThrow(() -> new RuntimeException(
+                String.format("Seu registro não foi localizado!")
+        ));
+    }
+
+    public void atualizarLeitura(GerarLivrosDTO gerarLivrosDTO){
+        GerarLivrosDTO salvo = livrosRepository.findById(gerarLivrosDTO.getId())
+                .orElseThrow(() -> new RuntimeException(
+                String.format("Seu registro não foi localizado!")
+        ));
+
+        salvo.setAntigoTestamento(gerarLivrosDTO.getAntigoTestamento());
+        salvo.setNovoTestamento(gerarLivrosDTO.getNovoTestamento());
+        livrosRepository.save(gerarLivrosDTO);
+    }
 }

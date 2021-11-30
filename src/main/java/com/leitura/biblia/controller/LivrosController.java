@@ -2,10 +2,9 @@ package com.leitura.biblia.controller;
 
 import com.leitura.biblia.impl.GerarLivrosDTO;
 import com.leitura.biblia.service.LivrosService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +29,14 @@ public class LivrosController {
         return ResponseEntity.ok(livrosService.obterLivros());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<GerarLivrosDTO> obterLivrosPorId(@PathVariable String id){
+        return ResponseEntity.ok(livrosService.obterLivrosPorId(id));
+    }
+
+    @PutMapping
+    public ResponseEntity atualizarLeitura(@RequestBody GerarLivrosDTO gerarLivrosDTO){
+        livrosService.atualizarLeitura(gerarLivrosDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }
